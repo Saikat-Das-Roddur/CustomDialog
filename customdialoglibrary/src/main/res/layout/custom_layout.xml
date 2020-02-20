@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="16dp"
+    android:background="@drawable/rounded_corner"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:background="@drawable/rounded_corner"
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="16dp"
+            android:id="@+id/titleTv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Title"
+            android:textColor="#212121"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/descriptionLayout"
+                android:layout_below="@id/titleLayout"
+                android:layout_margin="16dp"
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:id="@+id/descTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/titleTv"
+                    android:gravity="left"
+                    android:text="Description" />
+            </LinearLayout>
+            <LinearLayout
+                android:padding="8dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/descriptionLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:visibility="gone"
+                    android:background="@android:color/transparent"
+                    android:text="Haa"
+                    android:id="@+id/cancelBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     />
+                <Button
+                    android:visibility="gone"
+                    android:background="@android:color/transparent"
+                    android:text="Naa"
+                    android:id="@+id/saveBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     />
+            </LinearLayout>
+
+</RelativeLayout>
