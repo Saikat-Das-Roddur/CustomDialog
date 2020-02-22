@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
 
     CustomDialog customDialog;
     EditText editTextTitle, editTextDesc;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,20 +28,20 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle(editTextTitle.getText().toString().trim())
                 .setDescription(editTextDesc.getText().toString().trim())
                 .setDescriptionColor(R.color.colorAccent)
-                .setTitleLayoutColor(Color.YELLOW)
+                .setTitleBackgroundColor(Color.YELLOW)
                 .setTitleColor(Color.BLUE)
-                .setOkButtonColor(Color.RED)
-                .setCancelButtonColor(Color.BLUE)
-                .setCancelButton("Cancel", new View.OnClickListener() {
+                .setPositiveButtonColor(Color.RED)
+                .setNegativeButtonColor(Color.BLUE)
+                .setNegativeButton("Cancel", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        customDialog.hide();
+                        customDialog.dismiss();
                     }
                 })
-                .setOKButton("Save", new View.OnClickListener() {
+                .setPositiveButton("Save", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        customDialog.hide();
+                        customDialog.dismiss();
                     }
                 });
         customDialog.show();

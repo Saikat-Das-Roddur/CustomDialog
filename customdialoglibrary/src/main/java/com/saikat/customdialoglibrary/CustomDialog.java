@@ -12,26 +12,32 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class CustomDialog {
-    LayoutInflater inflater;
-    AlertDialog alertDialog;
-    View view;
-    Activity activity;
-    Button buttonSave, buttonCancel;
-    TextView textViewTitle, textViewDesc;
-    LinearLayout linearLayout;
+    private Activity activity;
+    private LayoutInflater inflater;
+
+    private View dialogView;
+    private Button buttonSave, buttonCancel;
+    private TextView textViewTitle, textViewDesc;
+    private LinearLayout linearLayout;
+
+    private AlertDialog alertDialog;
 
     public CustomDialog(Activity activity) {
         this.activity = activity;
         inflater = LayoutInflater.from(activity);
 
-        if (view == null) {
-            view = inflater.inflate(R.layout.custom_layout, null);
-            buttonSave = view.findViewById(R.id.saveBtn);
-            buttonCancel = view.findViewById(R.id.cancelBtn);
-            textViewTitle = view.findViewById(R.id.titleTv);
-            textViewDesc = view.findViewById(R.id.descTv);
-            linearLayout = view.findViewById(R.id.titleLayout);
-            alertDialog = new AlertDialog.Builder(activity).setView(view).create();
+        if (dialogView == null) {
+            dialogView = inflater.inflate(R.layout.custom_layout, null);
+
+            buttonSave = dialogView.findViewById(R.id.saveBtn);
+            buttonCancel = dialogView.findViewById(R.id.cancelBtn);
+            textViewTitle = dialogView.findViewById(R.id.titleTv);
+            textViewDesc = dialogView.findViewById(R.id.descTv);
+            linearLayout = dialogView.findViewById(R.id.titleLayout);
+
+            alertDialog = new AlertDialog.Builder(activity)
+                    .setView(dialogView)
+                    .create();
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
 
@@ -55,7 +61,7 @@ public class CustomDialog {
         return this;
     }
 
-    public CustomDialog setOkButtonColor(int color) {
+    public CustomDialog setPositiveButtonColor(int color) {
         if (color > 0) {
             buttonSave.setTextColor(((Context) activity).getResources().getColor(color));
         } else
@@ -63,13 +69,12 @@ public class CustomDialog {
         return this;
     }
 
-    public CustomDialog setOkButtonColor(String color) {
+    public CustomDialog setPositiveButtonColor(String color) {
         buttonSave.setTextColor(Color.parseColor(color));
         return this;
     }
 
-    public CustomDialog setCancelButtonColor(int color) {
-
+    public CustomDialog setNegativeButtonColor(int color) {
         if (color > 0) {
             buttonCancel.setTextColor(((Context) activity).getResources().getColor(color));
         } else
@@ -78,12 +83,12 @@ public class CustomDialog {
         return this;
     }
 
-    public CustomDialog setCancelButtonColor(String color) {
+    public CustomDialog setNegativeButtonColor(String color) {
         buttonCancel.setTextColor(Color.parseColor(color));
         return this;
     }
 
-    public CustomDialog setTitleLayoutColor(int color){
+    public CustomDialog setTitleBackgroundColor(int color) {
         if (color > 0) {
             linearLayout.setBackgroundColor(((Context) activity).getResources().getColor(color));
         } else
@@ -110,31 +115,28 @@ public class CustomDialog {
         return this;
     }
 
-    public CustomDialog setOKButton(String text, View.OnClickListener listener) {
+    public CustomDialog setPositiveButton(String text, View.OnClickListener listener) {
         buttonSave.setVisibility(View.VISIBLE);
         buttonSave.setText(text);
         buttonSave.setOnClickListener(listener);
         return this;
     }
 
-    public CustomDialog setCancelButton(String text, View.OnClickListener listener) {
-
+    public CustomDialog setNegativeButton(String text, View.OnClickListener listener) {
         buttonCancel.setVisibility(View.VISIBLE);
         buttonCancel.setText(text);
         buttonCancel.setOnClickListener(listener);
         return this;
     }
 
-    public void hide() {
-        try {
+    public void dismiss() {
+        if (alertDialog != null)
             alertDialog.dismiss();
-        } catch (Exception e) {
-
-        }
     }
 
 
     public void show() {
-        alertDialog.show();
+        if (alertDialog != null)
+            alertDialog.show();
     }
 }
